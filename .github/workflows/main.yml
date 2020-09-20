@@ -1,15 +1,29 @@
-name: Build Go binaries
+name: CI/CD
 
 on:
   push:
     branches:
-      - "*"
+      - master
+      - develop
+      - beta
+      - alpha
+      - "[0-9]+.x"
+      - "[0-9]+.[0-9]+.x"
+  pull_request:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        os: ['ubuntu-latest', 'windows-latest', 'macos-latest']
+
+    runs-on: ${{ matrix.os }}
+
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-go@v2
 
-      - run: make
+      - name: Set up Go
+        uses: actions/setup-go@v2
+
+      - run: |
+          make
