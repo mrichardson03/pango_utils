@@ -2,7 +2,7 @@
 
 ![CI/CD](https://github.com/mrichardson03/pango_utils/workflows/CI/CD/badge.svg)
 
-Version: 0.0.1
+Version: 1.0.0
 
 Utility programs using the [pango](https://github.com/PaloAltoNetworks/pango) library.
 Most of these are just built and repackaged from the source code on the 
