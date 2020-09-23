@@ -57,12 +57,6 @@ jobs:
         with:
           path: build/
 
-      - run: ls -R
-
-      - name: Relocate downloaded artifacts
-        run: |
-          find build/ -iname '*.zip' -exec mv {} build \;
-
       - name: Create release and publish
         id: release
         uses: cycjimmy/semantic-release-action@v2
