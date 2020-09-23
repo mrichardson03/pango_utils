@@ -33,13 +33,10 @@ NEW_VERSION=$(echo "$1" | sed -e 's/-beta\./.b/' | sed -e 's/-alpha\./.a/')
 echo "### Before relocate..."
 ls -R
 
-# Relocate downloaded artifacts.
-find build/ -iname '*.zip' -exec mv {} build/ \;
-
 # Rename downloaded artifacts.
 for file in $(find build -iname '*.zip');
 do
-    SUFFIX=$(echo ${file} | cut -d '-' -f2,3)
+    SUFFIX=$(echo ${file} | cut -d '/' -f3 | cut -d '-' -f2,3)
     mv ${file} build/pango_utils-${NEW_VERSION}-${SUFFIX}
 done
 
