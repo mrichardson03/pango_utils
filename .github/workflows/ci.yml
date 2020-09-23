@@ -9,6 +9,10 @@ on:
 
 jobs:
   build:
+    strategy:
+      matrix:
+        os: [linux, darwin, windows]
+        arch: [amd64]
     runs-on: ubuntu-latest
 
     steps:
@@ -17,7 +21,16 @@ jobs:
       - name: Set up Go
         uses: actions/setup-go@v2
 
-      - run: make
+      - name: Build
+        run: |
+          mkdir -p build
+          for dir in $(find ./cmd -type d -maxdepth 1 -mindepth 1);
+          do
+            go build -o build ${dir}
+          done
+        env:
+          GOOS: ${{ matrix.os }}
+          GOARCH: ${{ matrix.arch }}
 
   docker:
     needs: [build]
