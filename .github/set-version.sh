@@ -31,9 +31,10 @@ fi
 NEW_VERSION=$(echo "$1" | sed -e 's/-beta\./.b/' | sed -e 's/-alpha\./.a/')
 
 # Rename built zip files
-for file in $(ls *.zip);
+cd "$ROOT/build"
+for file in $(ls *);
 do
-    mv ${file} pango_utils-${NEW_VERSION}-${file}
+    mv ${file} pango_utils-${NEW_VERSION}-${file}.zip
 done
 
 # Set version in README.md
