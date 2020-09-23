@@ -28,18 +28,13 @@ jobs:
           do
             go build -o build ${dir}
           done
+          zip -j ${GITHUB_REPOSITORY}_${GOOS}_${GOARCH}.zip build/*
         env:
           GOOS: ${{ matrix.os }}
           GOARCH: ${{ matrix.arch }}
 
-  docker:
-    needs: [build]
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v2
-
-      - name: Build and push
-        uses: docker/build-push-action@v2
+      - name: Upload build result
+        uses: actions/upload-artifact@v2
         with:
-          push: false
+          name: ${{ matrix.os }}-${{ matrix.arch }}
+          path: ${GITHUB_REPOSITORY}-${{ matrix.os }}-${{ matrix.arch }}.zip
