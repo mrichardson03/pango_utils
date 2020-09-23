@@ -32,7 +32,7 @@ jobs:
           do
             go build -o build ${dir}
           done
-          zip -j $(echo $GITHUB_REPOSITORY | cut -d '/' -f2)_${GOOS}_${GOARCH}.zip build/*
+          zip -j $(echo $GITHUB_REPOSITORY | cut -d '/' -f2)-${GOOS}-${GOARCH}.zip build/*
         env:
           GOOS: ${{ matrix.os }}
           GOARCH: ${{ matrix.arch }}
