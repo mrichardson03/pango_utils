@@ -16,7 +16,6 @@ jobs:
     env:
       GOOS: ${{ matrix.os }}
       GOARCH: ${{ matrix.arch }}
-      REPO_NAME: $(echo $GITHUB_REPOSITORY | cut -d '/' -f2)
     runs-on: ubuntu-latest
 
     steps:
@@ -32,7 +31,7 @@ jobs:
           do
             go build -o build ${dir}
           done
-          zip -j ${REPO_NAME}_${GOOS}_${GOARCH}.zip build/*
+          zip -j $(echo $GITHUB_REPOSITORY | cut -d '/' -f2)_${GOOS}_${GOARCH}.zip build/*
         env:
           GOOS: ${{ matrix.os }}
           GOARCH: ${{ matrix.arch }}
@@ -41,4 +40,4 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: ${{ matrix.os }}-${{ matrix.arch }}
-          path: ${REPO_NAME}-${{ matrix.os }}-${{ matrix.arch }}.zip
+          path: '*.zip'
