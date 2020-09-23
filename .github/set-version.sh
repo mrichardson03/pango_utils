@@ -30,12 +30,21 @@ fi
 
 NEW_VERSION=$(echo "$1" | sed -e 's/-beta\./.b/' | sed -e 's/-alpha\./.a/')
 
-# Rename built zip files
-cd "$ROOT/build"
-for file in $(ls *);
+echo "### Before relocate..."
+ls -R
+
+# Relocate downloaded artifacts.
+find build/ -iname '*.zip' -exec mv {} build/ \;
+
+# Rename downloaded artifacts.
+for file in $(find build -iname '*.zip');
 do
-    mv ${file} pango_utils-${NEW_VERSION}-${file}.zip
+    SUFFIX=$(echo ${file} | cut -d '-' -f2 -f3)
+    mv ${file} build/pango_utils-${NEW_VERSION}-${SUFFIX}
 done
+
+echo "\n### After relocate..."
+ls -R
 
 # Set version in README.md
 grep -E '^Version: (.+)$' "$ROOT/README.md" > /dev/null
