@@ -39,7 +39,7 @@ find build/ -iname '*.zip' -exec mv {} build/ \;
 # Rename downloaded artifacts.
 for file in $(find build -iname '*.zip');
 do
-    SUFFIX=$(echo ${file} | cut -d '-' -f2 -f3)
+    SUFFIX=$(echo ${file} | cut -d '-' -f2,3)
     mv ${file} build/pango_utils-${NEW_VERSION}-${SUFFIX}
 done
 
