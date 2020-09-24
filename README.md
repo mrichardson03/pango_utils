@@ -45,6 +45,8 @@ $ make_api_key
 
 ### commit
 
+*Note*: This utility can also use the environment variable `PANOS_API_KEY`.
+
 Terraform does not provide native support for committing configuration to PAN-OS, so
 this utility will issue the commit API command.
 
