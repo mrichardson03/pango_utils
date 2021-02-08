@@ -5,8 +5,10 @@ import (
 	"flag"
 	"log"
 	"os"
+	"strings"
 
 	"github.com/PaloAltoNetworks/pango"
+	"github.com/PaloAltoNetworks/pango/commit"
 )
 
 type Credentials struct {
@@ -112,10 +114,21 @@ func main() {
 		log.Fatalf("Failed: %s", err)
 	}
 
-	// Do a partial commit for the supplied username.
-	admins := []string{config.Username}
+	// Build commit command
+	cmd := commit.FirewallCommit{
+		Description:             flag.Arg(0),
+		ExcludeDeviceAndNetwork: false,
+		ExcludeSharedObjects:    false,
+		ExcludePolicyAndObjects: false,
+		Force:                   false,
+	}
 
-	job, err = fw.Commit(flag.Arg(0), admins, true, true, false, true)
+	admins := strings.TrimSpace(config.Username)
+	if admins != "" {
+		cmd.Admins = strings.Split(admins, ",")
+	}
+
+	job, _, err = fw.Commit(cmd, "", nil)
 	if err != nil {
 		log.Fatalf("Error in commit: %s", err)
 	} else if job == 0 {
