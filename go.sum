@@ -1,5 +1,5 @@
-github.com/PaloAltoNetworks/pango v0.5.1 h1:s0BRF6qmfDb94fR7yT2HeHwHAgBOL0HREF6E1E6fI3s=
-github.com/PaloAltoNetworks/pango v0.5.1/go.mod h1:xpwEKL6CHhniRcqKYTjIiGBzPd3QIyto3sz2ynsP1qg=
+github.com/PaloAltoNetworks/pango v0.6.0 h1:QKe17XsICz2P1S6sKpaH1w8zr/4Q3jYsYVq7bQTjfv8=
+github.com/PaloAltoNetworks/pango v0.6.0/go.mod h1:xpwEKL6CHhniRcqKYTjIiGBzPd3QIyto3sz2ynsP1qg=
 golang.org/x/crypto v0.0.0-20190308221718-c2843e01d9a2/go.mod h1:djNgcEr1/C05ACkg1iLfiJU5Ep61QUkGW8qpdssI0+w=
 golang.org/x/crypto v0.0.0-20200510223506-06a226fb4e37 h1:cg5LA/zNPRzIXIWSCxQW10Rvpy94aQh3LT/ShoCpkHw=
 golang.org/x/crypto v0.0.0-20200510223506-06a226fb4e37/go.mod h1:LzIPMQfyMNhhGPhUkYOs5KpL4U8rLKemX1yGLhDgUto=
